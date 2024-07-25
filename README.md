@@ -11,7 +11,6 @@ Este projeto é um jogo 2D simples desenvolvido do zero em Java, seguindo o tuto
 - [Como Jogar](#como-jogar)
 - [Desenvolvimento](#desenvolvimento)
 - [Contribuição](#contribuição)
-- [Licença](#licença)
 
 ## Introdução
 
