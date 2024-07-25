@@ -8,7 +8,6 @@ Este projeto é um jogo 2D simples desenvolvido do zero em Java, seguindo o tuto
 
 - [Introdução](#introdução)
 - [Instalação](#instalação)
-- [Como Jogar](#como-jogar)
 - [Desenvolvimento](#desenvolvimento)
 - [Contribuição](#contribuição)
 
@@ -28,13 +27,13 @@ Para clonar e executar este projeto, você precisará de [Git](https://git-scm.c
    ```
    
 2. Navegue até o diretório do projeto:
-  ```sh
-  cd 2dgame
-  ```
+   ```sh
+   cd 2dgame
+   ```
 
 3. Compile o projeto
 
-4. Execute a classe `Main`
+4. Execute a classe `Main`, no pacote /src
 
 ### Desenvolvimento
 
