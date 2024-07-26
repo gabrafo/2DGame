@@ -9,6 +9,8 @@ public class Entity {
 
     private BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     private String direction;
+    private int spriteCounter = 0;
+    private int spriteNum = 1;
 
     public int getX() {
         return x;
@@ -32,6 +34,22 @@ public class Entity {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public int getSpriteCounter() {
+        return spriteCounter;
+    }
+
+    public void setSpriteCounter(int spriteCounter) {
+        this.spriteCounter = spriteCounter;
+    }
+
+    public int getSpriteNum() {
+        return spriteNum;
+    }
+
+    public void setSpriteNum(int spriteNum) {
+        this.spriteNum = spriteNum;
     }
 
     public BufferedImage getUp1() {

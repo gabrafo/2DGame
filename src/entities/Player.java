@@ -18,25 +18,25 @@ public class Player extends Entity {
         this.keyH = keyH;
         setDefaultValues();
         getPlayerImage();
-        setDirection("down");
     }
 
     public void setDefaultValues(){
         setX(100);
         setY(100);
         setSpeed(4);
+        setDirection("down");
     }
 
     public void getPlayerImage(){
         try {
-            setUp1(ImageIO.read(getClass().getResourceAsStream("/player/up1.png")));
-            //setUp2(ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png")));
-            setDown1(ImageIO.read(getClass().getResourceAsStream("/player/down1.png")));
-            //setDown2(ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png")));
-            setLeft1(ImageIO.read(getClass().getResourceAsStream("/player/left1.png")));
-            //setLeft2(ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png")));
-            setRight1(ImageIO.read(getClass().getResourceAsStream("/player/right1.png")));
-            //setRight2(ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png")));
+            setUp1(ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png")));
+            setUp2(ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png")));
+            setDown1(ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png")));
+            setDown2(ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png")));
+            setLeft1(ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png")));
+            setLeft2(ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png")));
+            setRight1(ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png")));
+            setRight2(ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png")));
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -44,28 +44,74 @@ public class Player extends Entity {
 
     public void update(){
 
+        boolean keyPressed = false;
         if(keyH.isUpPressed()){
             setDirection("up");
             setY(getY()-getSpeed());
+            keyPressed = true;
         } else if(keyH.isDownPressed()){
             setDirection("down");
             setY(getY()+getSpeed());
+            keyPressed = true;
         } else if(keyH.isLeftPressed()){
             setDirection("left");
             setX(getX()-getSpeed());
+            keyPressed = true;
         } else if(keyH.isRightPressed()){
             setDirection("right");
             setX(getX()+getSpeed());
+            keyPressed = true;
+        }
+
+        if(keyPressed){
+            setSpriteCounter(getSpriteCounter()+1);
+            if(getSpriteCounter()>12){
+                if(getSpriteNum()==1){
+                    setSpriteNum(2);
+                }
+                else if(getSpriteNum()==2){
+                    setSpriteNum(1);
+                }
+                setSpriteCounter(0);
+            }
         }
     }
 
     public void draw(Graphics g2d){
-        BufferedImage image = switch (getDirection()) {
-            case "up" -> getUp1();
-            case "down" -> getDown1();
-            case "left" -> getLeft1();
-            case "right" -> getRight1();
-            default -> null;
+        BufferedImage image = null;
+        switch (getDirection()) {
+            case "up":
+                if(getSpriteNum() == 1){
+                    image = getUp1();
+                }
+                if(getSpriteNum() == 2){
+                    image = getUp2();
+                }
+                break;
+            case "down":
+                if(getSpriteNum() == 1){
+                    image = getDown1();
+                }
+                if(getSpriteNum() == 2){
+                    image = getDown2();
+                }
+                break;
+            case "left":
+                if(getSpriteNum() == 1){
+                    image = getLeft1();
+                }
+                if(getSpriteNum() == 2){
+                    image = getLeft2();
+                }
+                break;
+            case "right":
+                if(getSpriteNum() == 1){
+                    image = getRight1();
+                }
+                if(getSpriteNum() == 2){
+                    image = getRight2();
+                }
+                break;
         };
 
         g2d.drawImage(image, getX(), getY(), gp.getTileSize(), gp.getTileSize(), null);
