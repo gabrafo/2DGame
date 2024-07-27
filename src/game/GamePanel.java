@@ -1,6 +1,7 @@
 package game;
 
 import entities.Player;
+import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     private Thread gameThread;
     private KeyHandler keyH ;
+    private TileManager tileM;
     private Player player;
 
     public GamePanel() {
@@ -26,6 +28,7 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true); // Melhor performance de rendering
         this.addKeyListener(keyH = new KeyHandler());
         this.player = new Player(this, keyH);
+        this.tileM = new TileManager(this);
         this.setFocusable(true); // Pode receber entrada via teclado
     }
 
@@ -81,11 +84,28 @@ public class GamePanel extends JPanel implements Runnable{
 
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+        tileM.draw(g2d);
         player.draw(g2d);
         g2d.dispose();
     }
 
     public int getTileSize() {
         return tileSize;
+    }
+
+    public int getMaxScreenColumn() {
+        return maxScreenColumn;
+    }
+
+    public int getMaxScreenRow() {
+        return maxScreenRow;
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
     }
 }
